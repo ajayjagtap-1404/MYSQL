@@ -1,0 +1,86 @@
+1) UC-1 : create datbase Address_book;
+mysql> CREATE database Address_book;
+
+2) UC-2 :
+ Ability to create a Address Book Table with contact details;
+ mysql> CREATE TABLE Address_book
+    -> (
+    -> sr_no INT NOT NULL AUTO_INCREMENT,
+    -> first_name VARCHAR(10) NOT NULL ,
+    -> last_name VARCHAR(10) NOT NULL,
+    -> address  VARCHAR(10) NOT NULL,
+    -> state  VARCHAR(10) NOT NULL,
+    -> zip_code INT NOT NULL,
+    -> phone_number INT NOT NULL,
+    -> email  VARCHAR(20) NOT NULL,
+    -> PRIMARY KEY(sr_no));
+
+mysql> describe Address_book;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| sr_no        | int         | NO   | PRI | NULL    | auto_increment |
+| first_name   | varchar(10) | NO   |     | NULL    |                |
+| last_name    | varchar(10) | NO   |     | NULL    |                |
+| address      | varchar(10) | NO   |     | NULL    |                |
+| state        | varchar(10) | NO   |     | NULL    |                |
+| zip_code     | int         | NO   |     | NULL    |                |
+| phone_number | int         | YES  |     | NULL    |                |
+| email        | varchar(20) | NO   |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+
+3) UC-3
+Ability to insert new Contacts to Address Book ;
+mysql> INSERT INTO Address_book(first_name, last_name, address, state, zip_code, phone_number, email) VALUES("Ajay", "Jagtap", "Jalna", "MH",431202, 9607121490," ajay@3.com");
+mysql> INSERT INTO Address_book(first_name, last_name, address, state, zip_code, phone_number, email) VALUES("shrey", "Bhat", "kota", "UP",431232, 9014567090," shery@23.com");
+INSERT INTO Address_book(first_name, last_name, address, state, zip_code, phoSELECT * FROM Address_book WHERE Address = "kota" ;  r", "MH",431252, 7757698310," sushant@34.com");
+
+4) UC-4;
+Ability to edit existing contact person using their name;
+
+mysql> update Address_book set first_name = "Sanjay" WHERE first_name = "sushant";
+
+mysql> SELECT * FROM Address_book;
++-------+------------+-----------+----------+-------+----------+--------------+-----------------+
+| sr_no | first_name | last_name | address  | state | zip_code | phone_number | email           |
++-------+------------+-----------+----------+-------+----------+--------------+-----------------+
+|     1 | Ajay       | Jagtap    | Jalna    | MH    |   431202 |   9607121490 |  ajay@3.com     |
+|     2 | shrey      | Bhat      | kota     | UP    |   431232 |   9014567090 |  shery@23.com   |
+|     3 | Sanjay     | Patil     | Kolhapur | MH    |   431252 |   7757698310 |  sushant@34.com |
++-------+------------+-----------+----------+-------+----------+--------------+-----------------+
+
+5) UC-5;
+Ability to delete a person using person's name;
+
+mysql> DELETE FROM Address_book  WHERE first_name = "Ajay";
+
+mysql> SELECT * FROM Address_book;
++-------+------------+-----------+----------+-------+----------+--------------+-----------------+
+| sr_no | first_name | last_name | address  | state | zip_code | phone_number | email           |
++-------+------------+-----------+----------+-------+----------+--------------+-----------------+
+|     2 | shrey      | Bhat      | kota     | UP    |   431232 |   9014567090 |  shery@23.com   |
+|     3 | Sanjay     | Patil     | Kolhapur | MH    |   431252 |   7757698310 |  sushant@34.com |
++-------+------------+-----------+----------+-------+----------+--------------+-----------------+
+
+6) UC-6:
+Ability to Retrieve Person belonging to a City or State from the Address Book;
+
+mysql> SELECT * FROM Address_book WHERE Address = "kota" ;
+
+mysql> SELECT * FROM Address_book WHERE Address = "kota" ;
++-------+------------+-----------+---------+-------+----------+--------------+---------------+
+| sr_no | first_name | last_name | address | state | zip_code | phone_number | email         |
++-------+------------+-----------+---------+-------+----------+--------------+---------------+
+|     2 | shrey      | Bhat      | kota    | UP    |   431232 |   9014567090 |  shery@23.com |
++-------+------------+-----------+---------+-------+----------+--------------+---------------+
+
+7) UC-7;
+Ability to understand the size of address book by City and State;
+
+mysql> SELECT count(*) FROM Address_book;
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+
